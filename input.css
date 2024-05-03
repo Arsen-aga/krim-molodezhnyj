@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'GT-Eesti-LC-Display-Light';
+  font-weight: 300;
+  font-style: normal;
+  src: local('GT-Eesti-LC-Display-Light'),
+    url('../fonts/GT-Eesti-LC-Display-Light.woff2') format('woff2'),
+    url('../fonts/GT-Eesti-LC-Display-Light.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT-Eesti-LC-Text-Regular';
+  font-weight: 400;
+  font-style: normal;
+  src: local('GT-Eesti-LC-Text-Regular'),
+    url('../fonts/GT-Eesti-LC-Text-Regular.woff2') format('woff2'),
+    url('../fonts/GT-Eesti-LC-Text-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT-Eesti-LC-Display-Medium';
+  font-weight: 500;
+  font-style: normal;
+  src: local('GT-Eesti-LC-Display-Medium'),
+    url('../fonts/GT-Eesti-LC-Display-Medium.woff2') format('woff2'),
+    url('../fonts/GT-Eesti-LC-Display-Medium.woff') format('woff');
+  font-display: swap;
+}
+
+:root {
+  --accent-r: #D64751;
+  --primary: #8C64D7;
+  --accent: #D9F06A;
+  --gray: #C9C9C9;
+  --azure: #0077FF;
+  --primary-light: #B78BF7;
+  --accent-dark: #B6CB28;
+  --soft-blue: #6EE3FE;
+  --white-transparent: #ffffff80;
+}
+
+body {
+  font-family: 'GT-Eesti-LC-Display-Light';
+  font-size: 16px;
+  font-weight: 300;
+  line-height: calc(19/16*100%);
+  color: white;
+  background-color: var(--primary);
+  overflow-x: hidden;
+}
+
+img {
+  object-fit: cover;
+}
+
+._title {
+  font-family: 'GT-Eesti-LC-Display-Medium';
+  text-transform: uppercase;
+  padding: 8px 0;
+}
+
+.noscroll {
+  overflow: hidden;
+}
+
+.header.active {
+  position: fixed;
+  margin: 16px auto 0;
+  z-index: 10;
+  width: 100%;
+  color: white;
+  background-color: var(--primary);
+  border-radius: 16px;
+  max-width: 1356px;
+  right: 0;
+  left: 0;
+}
+
+.header.active .logo path {
+  fill: white;
+}
+
+#home .header.active{
+  color: var(--primary);
+  background-color: white;
+}
+
+#home .header.active .logo path {
+  fill: var(--primary);
+}
+
+.burger {
+  min-width: 50px;
+  min-height: 50px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  width: 25px;
+  background-color: var(--primary);
+  transition: all .3s;
+}
+
+.burger.active .bar:first-child {
+  rotate: 45deg;
+  translate: 0 8px;
+}
+
+.burger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active .bar:last-child {
+  rotate: -45deg;
+  translate: 0 -6px;
+}
+
+.popup {
+  position: absolute;
+  border-radius: 30px;
+  max-width: 1356px;
+  margin-top: 10px;
+  height: calc(100vh - 92px);
+  right: 0;
+  left: 0;
+  transform: skew(-90deg);
+  transition: all .3s;
+}
+
+.popup.active{
+  transform: skew(0deg);
+}
+
+.popup ul {
+  height: calc(100vh - 92px);
+}
+
+.breadcrumbs li{
+  position: relative;
+}
+
+.breadcrumbs li::after{
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  right: -28px;
+  background-image: url('../img/icons/br-arrow.svg');
+  background-position: center;
+}
+
+.breadcrumbs li:last-child::after{
+  display: none;
+}
+
+
+.pulse {
+  position: absolute;
+  text-align: center;
+  padding: 4px;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+}
+
+.pulse.bg-primary {
+  background: var(--primary);
+}
+
+.pulse.bg-accent-dark {
+  background: var(--accent-dark);
+}
+
+.pulse::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  opacity: 0;
+  right: -4px;
+  top: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  animation: pulse 2.5s linear infinite;
+}
+
+.pulse.bg-primary::before {
+  border: 2px solid var(--primary);
+}
+
+.pulse.bg-accent-dark::before {
+  border: 2px solid var(--accent-dark);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.pulse::after,
+.pulse::before {
+  content: '';
+  position: absolute;
+  border: 2px solid var(--primary);
+  left: -4px;
+  opacity: 0;
+  right: -4px;
+  top: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  animation: pulse 2.5s linear infinite;
+}
+
+.pulse.bg-primary::after {
+  border: 2px solid var(--primary);
+}
+
+.pulse.bg-accent-dark::after {
+  border: 2px solid var(--accent-dark);
+}
+
+.pulse::after {
+  animation-delay: 1.25s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
