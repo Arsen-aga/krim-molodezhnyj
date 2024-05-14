@@ -35,8 +35,7 @@ if (document.querySelector(".header")) {
       const coordWindow = window.scrollY;
       // если координаты окна больше 80, то добавляем класс, иначе - нет
       coordWindow > 0
-        ? (elem.classList.add("active"),
-          popupMenu.classList.add("top-scroll"))
+        ? (elem.classList.add("active"), popupMenu.classList.add("top-scroll"))
         : (elem.classList.remove("active"),
           popupMenu.classList.remove("top-scroll"));
     });
@@ -115,3 +114,19 @@ if (document.querySelector("#map")) {
   }
 }
 
+// user-nav
+
+if (document.querySelector(".user-block")) {
+  const userBlock = document.querySelector(".user-block");
+  const userNav = document.querySelector(".user-nav");
+
+  userBlock.addEventListener("click", function () {
+    userNav.classList.toggle("show");
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!e.target.classList.contains("user-block")){
+      userNav.classList.remove("show");
+    }
+  });
+}
